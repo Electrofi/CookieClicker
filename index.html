@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale-1.0">
+   <title>Cookie Clicker</title>
+	 <style id="styles">
+	
+	body {
+		background-color: black;
+	}
+	label {
+		color: white;
+	}
+	p {
+		color: white;
+	}
+	a {
+		color: blue;
+	}
+
+	#overlay {
+		position: fixed;
+		display: block;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 2;
+}
+
+#text{
+  position: fixed;
+  top: 0px;
+  left: 220px;
+  font-size: 25px;
+  color: white;
+}
+#text2{
+  position: fixed;
+  top: 25px;
+  left: 220px;
+  font-size: 25px;
+  color: white;
+}
+#text3{
+	position: fixed;
+  top: 50px;
+  left: 220px;
+  font-size: 25px;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<div id="cookies">
+	<p id="text">Cookies: 0 <br> Cookies Per Click: 1 <br> Cookies Per Second: 0</p>
+</div>
+
+
+<div id="mode"></div>
+
+</body>
+
+<script>
+
+
+
+const cpc = '<button onClick="mode(\'close\')">Close Menu</button><p>Cookies Per Click Upgrades</p><button onClick="increaseClickVal(1, 1)">Grandma\'s Special Recipe</button><p>Cost: 1 Cookies</p><p>Reward: +1 Cookie Per Click</p><button onClick="increaseClickVal(5, 10)">Better Egg Beater</button><p>Cost: 10 Cookies</p><p>Reward: +5 Cookies Per Click</p><button onClick="increaseClickVal(50, 100)">Better Gloves</button><p>Cost: 100 Cookies</p><p>Reward: +60 Cookies Per Click</p><button onClick="increaseClickVal(700, 1000)">Huge Hand</button><p>Cost: 1,000 Cookies</p><p>Reward: +700 Cookies Per Click</p><button onClick="increaseClickVal(2500, 10000)">Great Grandma\'s Special Recipe</button><p>Cost: 10,000 Cookies</p><p>Reward: +2,500 Cookies Per Click</p><button onClick="increaseClickVal(30000, 100000)">Special Oven</button><p>Cost: 100,000 Cookies</p><p>Reward: +30,000 Cookies Per Click</p><button onClick="increaseClickVal(50000, 1000000)">Medium Oven</button><p>Cost: 1,000,000 Cookies</p><p>Reward: +50,000 Cookies Per Click</p><button onClick="increaseClickVal(100000, 10000000)">Large Oven</button><p>Cost: 10,000,000 Cookies</p><p>Reward: +100,000 Cookies Per Click</p><button onClick="increaseClickVal(500000, 100000000)">Very Large Oven</button><p>Cost: 100,000,000 Cookies</p><p>Reward: +600,000 Cookies Per Click</p><button onClick="increaseClickVal(10000000, 1000000000)">Ginourmous Oven</button><p>Cost: 1,000,000,000 Cookies</p><p>Reward: +10,000,000 Cookies Per Click</p><button onClick="increaseClickVal(100000000, 10000000000)">Nuclear Oven</button><p>Cost: 10,000,000,000 Cookies</p><p>Reward: +100,000,000 Cookies Per Click</p><button onClick="increaseClickVal(500000000, 100000000000)">Quantum Oven</button><p>Cost: 100,000,000,000 Cookies</p><p>Reward: +500,000,000 Cookies Per Click</p><button onClick="increaseClickVal(1000000000, 1000000000000)">How are you even getting these upgrades?</button><p>Cost: 1,000,000,000,000 Cookies</p><p>Reward: +1,000,000,000 Cookies Per Click</p>'
+
+const cookiesPS = '<button onClick="mode(\'close\')">Close Menu</button><p></p><button onClick="increasecookiespersecond(1, 100)">Small Auto Baker</button><p>Cost: 100 Cookies<br>Reward: 1 Cookie Per Second</p><button onClick="increasecookiespersecond(20, 1000)">Medium Auto Baker</button><p>Cost: 1000 Cookies<br>Reward: 20 Cookies Per Second</p><button onClick="increasecookiespersecond(400, 10000)">Large Auto Baker</button><p>Cost: 10000 Cookies<br>Reward: 400 Cookies Per Second</p><button onClick="increasecookiespersecond(8000, 100000)">Huge Auto Baker</button><p>Cost: 100000 Cookies<br>Reward: 8000 Cookies Per Second</p>'
+
+const cookie = '<img src="cookie.png" width=200 height=183 onClick="increaseCookies()"/> <br> <button onClick = "mode(' + "'cpc'" + ')">Cookies Per Click Upgrades</button> <br> <br> <button onClick = "mode(' + "'cookiespersecond'" + ')">Cookies Per Second Upgrades</button>'
+
+const increaseCookies = () => {
+	count += clickVal
+	document.getElementById("cookies").innerHTML = "<p id='text'>Cookies: " + new Intl.NumberFormat().format(count) + "<br>Cookies Per Click: " + new Intl.NumberFormat().format(clickVal) + "<br>Cookies Per Second: " + new Intl.NumberFormat().format(cookiespersecond) + "</p>"
+}
+
+const increaseClickVal = (val, cost) => {
+	if(count >= cost) {
+		clickVal += val
+		count -= cost
+		document.getElementById("cookies").innerHTML = "<p id='text'>Cookies: " + new Intl.NumberFormat().format(count) + "<br>Cookies Per Click: " + new Intl.NumberFormat().format(clickVal) + "<br>Cookies Per Second: " + new Intl.NumberFormat().format(cookiespersecond) + "</p>"
+	}
+}
+
+const cookiesPerSecond = () => {
+	count += cookiespersecond
+	document.getElementById("cookies").innerHTML = "<p id='text'>Cookies: " + new Intl.NumberFormat().format(count) + "<br>Cookies Per Click: " + new Intl.NumberFormat().format(clickVal) + "<br>Cookies Per Second: " + new Intl.NumberFormat().format(cookiespersecond) + "</p>"
+}
+
+const increasecookiespersecond = (val, cost) => {
+	if(count >= cost) {
+		cookiespersecond += val
+		count -= cost
+		document.getElementById("cookies").innerHTML = "<p id='text'>Cookies: " + new Intl.NumberFormat().format(count) + "<br>Cookies Per Click: " + new Intl.NumberFormat().format(clickVal) + "<br>Cookies Per Second: " + new Intl.NumberFormat().format(cookiespersecond) + "</p>"
+	}
+}
+
+const getCookies = () => {
+	return count
+}
+
+const mode = (v) => {
+	if(v == "close") {
+			document.getElementById("mode").innerHTML = cookie
+			//console.log("Cookie")
+	}
+	if(v == "cpc") {
+			document.getElementById("mode").innerHTML = cpc
+			//console.log("cpc")
+	}
+	if(v == "cookiespersecond") {
+		document.getElementById("mode").innerHTML = cookiesPS
+		//console.log("cookiespersecond")
+	}
+}
+
+count = 0
+clickVal = 1
+cookiespersecond = 0
+setInterval(cookiesPerSecond, 1000)
+move("close")
+</script>
+</html>
